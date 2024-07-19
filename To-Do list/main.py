@@ -1,11 +1,11 @@
-import tkinter
+import tkinter as tk
 from tkinter import *
 from PIL import Image, ImageTk
 
 root = Tk()
 root.title("To-Do List")
-root.geometry("400x650+400+100")
-root.resizable(False,False)
+root.geometry("400x580+400+100")
+root.resizable(False, False)
 
 task_list = []
 
@@ -52,44 +52,44 @@ def openTaskFile():
         with open("task.txt", "w") as file:
             pass  # Just create the file if it doesn't exist
 
-#icon
+# icon
 
 Image_icon = PhotoImage(file="images/task.png")
-root.iconphoto(False,Image_icon)
+root.iconphoto(False, Image_icon)
 
 # top bar
 
 TopImage = PhotoImage(file="images/top.png")
-Label(root,image=TopImage).pack()
+Label(root, image=TopImage).pack()
 
 dockImage = PhotoImage(file="images/dock.png")
-Label(root,image=dockImage,bg="black").place(x=30,y=25)
+Label(root, image=dockImage, bg="black").place(x=30, y=25)
 
 noteImage = PhotoImage(file="images/task.png")
-Label(root, image=noteImage,bg="black").place(x=340,y=25)
+Label(root, image=noteImage, bg="black").place(x=340, y=25)
 
-heading = Label(root,text="To-Do List", font="arial 20 bold", fg="#FEE715",bg="black")
-heading.place(x=130,y=20)
+heading = Label(root, text="To-Do List", font="arial 20 bold", fg="#FEE715", bg="black")
+heading.place(x=130, y=20)
 
-#main
+# main
 
-frame = Frame(root, width=400, height=50, bg="white",borderwidth=2)
-frame.place(x=0,y=180)
+frame = Frame(root, width=400, height=50, bg="white", borderwidth=2)
+frame.place(x=0, y=110)
 
 task = StringVar()
-task_entry = Entry(frame,width=18,font="arial 20",bd=0)
-task_entry.place(x=10,y=7)
+task_entry = Entry(frame, width=18, font="arial 20", bd=0)
+task_entry.place(x=10, y=7)
 task_entry.focus()
 
 button = Button(frame, text="Add", font="arial 20 bold", width=6, bg="black", fg="#FEE715", bd=0, command=addTask)
 button.place(x=300, y=0)
 
-#listbox
+# listbox
 
 frame1 = Frame(root, bd=3, width=700, height=280, bg="black")
-frame1.pack(pady=(160,0))
+frame1.pack(pady=(90, 0))  # Adjust the pady value to 70 to set the spacing
 
-listbox = Listbox(frame1,font=('arial', 12), width=40, height=16, bg="black", fg="#FEE715", cursor="hand2", selectbackground="#FBF4B5",selectforeground="black")
+listbox = Listbox(frame1, font=('arial', 12), width=40, height=16, bg="black", fg="#FEE715", cursor="hand2", selectbackground="#FBF4B5", selectforeground="black")
 listbox.pack(side=LEFT, fill=BOTH, padx=2)
 
 scrollbar = Scrollbar(frame1)
@@ -101,6 +101,7 @@ scrollbar.config(command=listbox.yview)
 openTaskFile()
 
 # button frame
+
 button_frame = Frame(root)
 button_frame.pack(side=BOTTOM, pady=20)
 
