@@ -1,5 +1,6 @@
 import tkinter
 from tkinter import *
+from PIL import Image, ImageTk
 
 root = Tk()
 root.title("To-Do List")
@@ -7,6 +8,13 @@ root.geometry("400x650+400+100")
 root.resizable(False,False)
 
 task_list = []
+
+def editTask():
+    task = listbox.get(ANCHOR)
+    if task:
+        task_entry.delete(0, END)
+        task_entry.insert(0, task)
+        deleteTask()  # Remove the task to avoid duplication
 
 def deleteTask():
     global task_list
@@ -43,7 +51,6 @@ def openTaskFile():
     except FileNotFoundError:
         with open("task.txt", "w") as file:
             pass  # Just create the file if it doesn't exist
-
 
 #icon
 
@@ -93,11 +100,24 @@ scrollbar.config(command=listbox.yview)
 
 openTaskFile()
 
-#delete button
+# button frame
+button_frame = Frame(root)
+button_frame.pack(side=BOTTOM, pady=20)
+
+# delete button
 
 Delete_icon = PhotoImage(file="images/delete3.png")
-Button(root,image=Delete_icon, bd=0, command=deleteTask).pack(side=BOTTOM, pady=13)
+delete_button = Button(button_frame, image=Delete_icon, bd=0, command=deleteTask)
+delete_button.pack(side=LEFT, padx=10)
+
+# edit button
+
+# Resize the image using PIL
+edit_image = Image.open("images/edit.png")
+edit_image = edit_image.resize((50, 50), Image.LANCZOS)
+Edit_icon = ImageTk.PhotoImage(edit_image)
+
+edit_button = Button(button_frame, image=Edit_icon, bd=0, command=editTask)
+edit_button.pack(side=LEFT, padx=10)
 
 root.mainloop()
-
-hello
