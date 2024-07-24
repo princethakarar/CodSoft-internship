@@ -21,7 +21,7 @@ def deleteTask():
     task = listbox.get(ANCHOR)
     if task in task_list:
         task_list.remove(task)
-        with open("task.txt", "w") as taskfile:
+        with open("To-Do list/task.txt", "w") as taskfile:
             for task in task_list:
                 taskfile.write(task + "\n")
         
@@ -32,7 +32,7 @@ def addTask():
     task_entry.delete(0, END)
 
     if task:
-        with open("task.txt", "a") as textfile:
+        with open("To-Do list/task.txt", "a") as textfile:
             textfile.write(task + "\n")
         task_list.append(task)
         listbox.insert(END, task)
@@ -40,7 +40,7 @@ def addTask():
 def openTaskFile():
     try:
         global task_list
-        with open("task.txt") as taskfile:
+        with open("To-Do list/task.txt") as taskfile:
             tasks = taskfile.readlines()
 
         for task in tasks:
@@ -49,23 +49,23 @@ def openTaskFile():
                 task_list.append(task)
                 listbox.insert(END, task)
     except FileNotFoundError:
-        with open("task.txt", "w") as file:
+        with open("To-Do list/task.txt", "w") as file:
             pass  # Just create the file if it doesn't exist
 
 # icon
 
-Image_icon = PhotoImage(file="images/task.png")
+Image_icon = PhotoImage(file="To-Do list/images/task.png")
 root.iconphoto(False, Image_icon)
 
 # top bar
 
-TopImage = PhotoImage(file="images/top.png")
+TopImage = PhotoImage(file="To-Do list/images/top.png")
 Label(root, image=TopImage).pack()
 
-dockImage = PhotoImage(file="images/dock.png")
+dockImage = PhotoImage(file="To-Do list/images/dock.png")
 Label(root, image=dockImage, bg="black").place(x=30, y=25)
 
-noteImage = PhotoImage(file="images/task.png")
+noteImage = PhotoImage(file="To-Do list/images/task.png")
 Label(root, image=noteImage, bg="black").place(x=340, y=25)
 
 heading = Label(root, text="To-Do List", font="arial 20 bold", fg="#FEE715", bg="black")
@@ -107,14 +107,14 @@ button_frame.pack(side=BOTTOM, pady=20)
 
 # delete button
 
-Delete_icon = PhotoImage(file="images/delete3.png")
+Delete_icon = PhotoImage(file="To-Do list/images/delete3.png")
 delete_button = Button(button_frame, image=Delete_icon, bd=0, command=deleteTask)
 delete_button.pack(side=LEFT, padx=10)
 
 # edit button
 
 # Resize the image using PIL
-edit_image = Image.open("images/edit.png")
+edit_image = Image.open("To-Do list/images/edit.png")
 edit_image = edit_image.resize((50, 50), Image.LANCZOS)
 Edit_icon = ImageTk.PhotoImage(edit_image)
 
