@@ -35,24 +35,24 @@ label_result = Label(root,width=25,height=2,text="",font=('arial',30), anchor='e
 label_result.pack()
 
 button_colors = {
-    "C": "#708090",     # Slate Grey
-    "%": "#36454F",     # Dark Teal
-    "/": "#36454F",     # Charcoal Grey
-    "x": "#36454F",     # Charcoal Grey
-    "7": "#696969",     # Dim Grey
-    "8": "#696969",     # Dim Grey
-    "9": "#696969",     # Dim Grey
-    "-": "#36454F",     # Charcoal Grey
-    "4": "#696969",     # Dim Grey
-    "5": "#696969",     # Dim Grey
-    "6": "#696969",     # Dim Grey
-    "+": "#36454F",     # Charcoal Grey
-    "1": "#696969",     # Dim Grey
-    "2": "#696969",     # Dim Grey
-    "3": "#696969",     # Dim Grey
-    ".": "#36454F",     # Charcoal Grey
-    "00": "#696969",    # Dim Grey
-    "0": "#696969",     # Dim Grey
+    "C": "#708090",     
+    "%": "#36454F",     
+    "/": "#36454F",     
+    "x": "#36454F",     
+    "7": "#696969",    
+    "8": "#696969",     
+    "9": "#696969",    
+    "-": "#36454F",    
+    "4": "#696969",     
+    "5": "#696969",    
+    "6": "#696969",    
+    "+": "#36454F",     
+    "1": "#696969",     
+    "2": "#696969",    
+    "3": "#696969",     
+    ".": "#36454F",     
+    "00": "#696969",   
+    "0": "#696969",    
 }
 
 button_texts = [
@@ -67,6 +67,6 @@ for (text, x, y) in button_texts:
     bg_color = button_colors[text]
     Button(root, text=text, width=3, height=1 if text != "=" else 2, font=("arial", 30, "bold"), bd=1, fg="#fff", bg=bg_color, command=lambda t=text: show(t) if t != "=" else calculate()).place(x=x, y=y)
 
-Button(root,text="=",width=7, height=1, font=("arial",30,"bold"), bd=1, fg="#fff", bg="#708090", command=lambda: calculate()).place(x=190,y=450)    #Slate Grey
+Button(root,text="=",width=7, height=1, font=("arial",30,"bold"), bd=1, fg="#fff", bg="#708090", command=lambda: calculate()).place(x=190,y=450)   
 
 root.mainloop()
