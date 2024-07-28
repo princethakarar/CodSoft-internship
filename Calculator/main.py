@@ -65,7 +65,14 @@ button_texts = [
 
 for (text, x, y) in button_texts:
     bg_color = button_colors[text]
-    Button(root, text=text, width=3, height=1 if text != "=" else 2, font=("arial", 30, "bold"), bd=1, fg="#fff", bg=bg_color, command=lambda t=text: show(t) if t != "=" else calculate()).place(x=x, y=y)
+    if text == "C":
+        command = clear
+    elif text == "=":
+        command = calculate
+    else:
+        command = lambda t=text: show(t)
+    
+    Button(root, text=text, width=3, height=1 if text != "=" else 2, font=("arial", 30, "bold"), bd=1, fg="#fff", bg=bg_color, command=command).place(x=x, y=y)
 
 Button(root,text="=",width=7, height=1, font=("arial",30,"bold"), bd=1, fg="#fff", bg="#708090", command=lambda: calculate()).place(x=190,y=450)   
 
