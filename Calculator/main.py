@@ -3,9 +3,11 @@ from tkinter import *
 
 root = Tk()
 root.title("Calculator")
+Image_icon = PhotoImage(file="Calculator/images/calcu.png")
+root.iconphoto(False, Image_icon)
 root.geometry("370x540+100+200")
 root.resizable(False,False)
-root.configure(bg="#17161b")
+root.configure(bg="#282828")
 
 equation = ""
 
