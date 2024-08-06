@@ -1,47 +1,35 @@
 from tkinter import *
 import random, string
 
-# Initialize the main window
 root = Tk()
 root.title("Password Generator")
 root.geometry("400x280+100+100")
 root.resizable(False,False)
+root.configure(bg="black")
 
-# Title Label
+# Title
 title = StringVar()
-
-TopImage = PhotoImage(file="To-Do list/images/top.png")
-Label(root, image=TopImage).pack()
 heading = Label(root, text="Password Generator", font="arial 20 bold", fg="#FEE715", bg="black")
-heading.place(x=30, y=20)
-title.set("The strength of password")
+heading.place(x=63, y=10)
 
-# Selection function
 def selection():
     pass
 
-# Choice variable for RadioButtons
 choice = IntVar()
+R1 = Radiobutton(root, text="Poor", variable=choice, value=1, command=selection, font="arial 11 bold", fg="#FEE715", bg="black").place(x=166,y=50)
+R2 = Radiobutton(root, text="Average", variable=choice, value=2, command=selection, font="arial 11 bold", fg="#FEE715", bg="black").place(x=159,y=70)
+R3 = Radiobutton(root, text="Advanced", variable=choice, value=3, command=selection, font="arial 11 bold", fg="#FEE715", bg="black").place(x=152,y=90)
+ 
+lenLabel = Label(root, text="Password Length", font="arial 15 bold", fg="#FEE715", bg="black")
+lenLabel.place(x=118, y=120)
 
-# RadioButtons for password strength
-R1 = Radiobutton(root, text="Poor", variable=choice, value=1, command=selection).pack(anchor=CENTER)
-R2 = Radiobutton(root, text="Average", variable=choice, value=2, command=selection).pack(anchor=CENTER)
-R3 = Radiobutton(root, text="Advanced", variable=choice, value=3, command=selection).pack(anchor=CENTER)
-
-# Label for password length
-lenlabel = StringVar()
-lenlabel.set("Password Length")
-lentitle = Label(root, textvariable=lenlabel).pack()
-
-# Spinbox for selecting password length
 val = IntVar()
-spinlength = Spinbox(root, from_=8, to_=24, textvariable=val, width=13).pack()
+spinlength = Spinbox(root, from_=6, to_=15, textvariable=val, width=13, font="arial 10 bold", fg="#FEE715", bg="black").place(x=150,y=150)
 
-# Password generation function
 def passgen():
     poor = string.ascii_uppercase + string.ascii_lowercase
     average = string.ascii_uppercase + string.ascii_lowercase + string.digits
-    symbols = """@#&*_."""
+    symbols = """@#&*_.!<>$%*-+=,?/"""
     advance = poor + average + symbols
     
     if choice.get() == 1:
@@ -51,18 +39,14 @@ def passgen():
     elif choice.get() == 3:
         return "".join(random.sample(advance, val.get()))
 
-# Callback function for button
 def callback():
     password.set(passgen())
 
-# Button to generate password
-passgenButton = Button(root, text="Generate Password", bd=5, height=2, command=callback, pady=3)
-passgenButton.pack()
+passgenButton = Button(root, text="Generate Password", bd=5, height=2, pady=3, width=18, font="arial 10 bold", fg="#FEE715", bg="black", command=callback)
+passgenButton.place(x=125,y=200)
 
-# Label to display the generated password
 password = StringVar()
-result_label = Label(root, textvariable=password)
+result_label = Label(root, textvariable=password, font="arial 10 bold", fg="#FEE715", bg="black")
 result_label.pack(side=BOTTOM)
 
-# Start the main loop
 root.mainloop()
